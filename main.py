@@ -143,6 +143,20 @@ def stop(message):
     raise StopIteration
 
 
+@bot.message_handler(commands=['kebp_photo'])
+def send_meme(message):
+    sended = False
+    while sended is False:
+        url = np.random.choice(photo_urls)
+        r = requests.get(url)
+        if r.status_code == 200:
+            bot.send_photo(message.chat.id, r.content)
+            sended = True
+            print('Фото отправлено')
+        else:
+            print('Ошибка с url: ' + url)
+
+
 @bot.message_handler(commands=['next_poluchka'])
 def get_next_poluchka(message):
     dt = datetime.datetime.now().date()
