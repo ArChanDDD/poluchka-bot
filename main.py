@@ -80,6 +80,8 @@ class Scheduler:  # Class для работы с schedule
                 ((datetime.datetime.now() + datetime.timedelta(days=1)).day in poluchka_dates) or (
                 (datetime.datetime.now() + datetime.timedelta(days=2)).day in poluchka_dates)):
             self.send_poluchka_today_but_must_not_today()
+            if (d_now + 1 in komp_dates) or (d_now + 2 in komp_dates):
+                self.send_kompensaciya()
         elif (datetime.datetime.now() + datetime.timedelta(days=7)).day in poluchka_dates:
             self.poluchka_next_week()
 
@@ -93,11 +95,12 @@ class Scheduler:  # Class для работы с schedule
         print('Отправляю уведомление о получке. Хотя вообще она не сегодня должна прийти. Всего чатов: ', len(self.ids))
         for m in self.ids:
             bot.send_message(m, np.random.choice(messages_for_poluchka_should_not_today))
+            self.send_meme(m)
 
     def poluchka_next_week(self):
         print('Уведомляю о получке на следующей неделе. Всего чатов: ', len(self.ids))
         for m in self.ids:
-            bot.send_message(m, np.random.choice(messages_for_poluchka_should_not_today))
+            bot.send_message(m, np.random.choice(messages_poluchka_next_week))
 
     def send_kompensaciya(self):
         print('Уведомляю о компенсации. Всего чатов: ', len(self.ids))
