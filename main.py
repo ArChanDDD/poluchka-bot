@@ -9,7 +9,7 @@ import requests
 
 API_TOKEN = '5420901910:AAHkQ9h5OX11yrWR1xaZz-WEM9sCPweNDt4'
 bot = telebot.TeleBot(API_TOKEN)
-chat_ids = []
+chat_ids = [-1001757220378]
 poluchka_dates = [3, 17]
 komp_dates = [17]
 messages_for_poluchka = ['ЕБЕН БОБЕН! СЕГОДНЯ ПОЛУЧКА!!!', 'ПОЛУЧКА.ПРИДЕТ.СЕГОДНЯ.',
